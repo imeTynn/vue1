@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="vue.js"></script>
+</head>
+<style>
+	.inner{
+		height:50px;
+		background:darkcyan;
+	}
+</style>
+<body>
+	<div id="app">
+		<div class="inner" @click="divHandler">
+			<!-- 1.使用.stop阻止冒泡 -->
+			<input type="button" value="点击" @click.stop="btnHandler">
+		</div>
+	
+	<!-- 2.使用.prevent阻止默认行为 -->
+   	  <a href="http://www.baidu.com" @click.prevent="link">有问题先百度</a>
+
+      <div class="inner" @click.capture="divHandler">
+			<!-- 3.使用.capture用事件捕获顺序促发事件-->
+			<input type="button" value="点击" @click="btnHandler">
+		</div>
+
+		<div class="inner" @click.self="divHandler">
+			<!-- 4.使用.self只有点击当前元素才会促发事件，不会阻止其他元素-->
+			<input type="button" value="点击" @click="btnHandler">
+		</div>
+       
+         <!-- 5.事件只促发一次 -->
+		<a href="http://www.baidu.com" @click.once="link">有问题先百度</a>
+   </div>
+ <script>
+	var vm=new Vue({
+	el:"#app",
+	data:{  },
+	methods:{
+		divHandler(){
+			console.log('这是外层');
+		},
+		btnHandler(){
+			console.log('这是btn');
+		},
+		link(){
+			console.log('促发了链接的点击')
+		}
+
+	}
+})
+</script>
+</body>
+</html>
