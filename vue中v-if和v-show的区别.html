@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+ <div id="data">
+  <input type="button" value="toggler" @click="flag=!flag">
+  <h1 v-if="flag">v-if控制</h1>
+  <h1 v-show="flag">v-show控制</h1>
+  </div>
+  <script>
+  //v-if和v-show的使用
+    var vm=new Vue({
+        el:'#data',
+        data:{
+          flag:true
+        },
+        methods:{
+       
+        }
+    })
+  </script>
+</body>
+</html>
