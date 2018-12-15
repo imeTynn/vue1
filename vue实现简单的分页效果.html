@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul,li{margin:0; padding:0;}
+    ul{ list-style:none }
+    .item{
+      float:left; padding:5px 10px;
+      border:1px solid #aaa;
+      color: #555; cursor:pointer;
+    }
+    .item:not(.active):not(.disabled):hover{ box-shadow:0 0 5px #aaa; }
+    .item+.item{ border-left:none; }
+    .item.active{
+      border:none;
+      border-right:1px solid #aaa;
+      background:lightBlue;
+    }
+    .item.disabled{ background:#aaa; cursor:default; }
+  </style>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+     <ul>
+       <li class="item" @click="change(-1)">上一页</li>
+       <li  class="item" v-for="i in pageCount" :class="pno==i?'active':''">{{i}}</li>
+       <li class="item" @click="change(1)">下一页</li>
+     </ul>
+  </div>
+  <script>
+    var vm=new Vue({
+      el:'#app',
+      data:{
+        pno:1,
+        pageCount:3,
+      },
+      methods:{
+         change(i){
+           if(i==-1&&this.pno==1){
+             return;
+           }
+           if(i==1&&this.pno==this.pageCount)
+           {
+             return;
+           } 
+           this.pno+=i;
+         }
+      }
+    })
+  </script>
+</body>
+</html>
